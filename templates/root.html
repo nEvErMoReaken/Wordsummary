@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <link type="text/css" rel="stylesheet" href="static/layui/css/layui.css">
+	<title>文本摘要生成系统</title>
+	<style>
+	.div_top{
+			width:100%;
+			height:35px;
+			background-color:#FFF;
+			}
+	.div_menu{
+		//width:100%;
+		//height:55px;
+		float:right;
+		font-size:14px;
+		color:#555;
+		//text-align:center;
+		line-height:35px;
+		margin-top:2%;
+	}
+	.div_more{
+		width: 60px;
+      		height: 23px;
+   		color: #fff;
+		background: #38f;
+   		line-height: 24px;
+		font-size:13px;
+		text-align:center;
+		border-bottom:1px solid #38f;
+		margin-left:10px;
+		margin-top:2%;	}
+	.color-menu{
+		background-color:#FFF;
+	}
+
+	.div_logo{
+				//height:100px;
+				width:100%;
+				text-align:center;
+				float:left;
+				margin-top:10%;
+				background-color:#FFF;
+			}
+
+
+	.div_text{
+				//height:30px;
+				width:45%;
+				float:left;
+			//	margin-top:7%;
+				background-color:#FFF;
+				text-align:center;
+				margin-left:33%;
+				margin-right:33%;
+	}
+
+	.div_logo2{
+			//	height:100px;
+				width:100%;
+				float:left;
+				margin-top:7%;
+				background-color:#FFF;
+				text-align:center;
+			}
+	.div_foot{
+				width:100%;
+				height:40px;
+				margin-top:2%;
+			//	margin-left:10%;
+			//	background-color:#000;
+				float:left;
+				color:#999;
+				//clear:both;
+				text-decoration:none;
+				//text-align: center;
+				line-height: 22px;
+				font: 12px arial;
+		}
+	.div_tail{
+				width:100%;
+			//	height:30px;
+				text-align: center;
+				line-height: 22px;
+				float:left;
+				color:#999;
+				font: 12px arial;
+				margin-top:1%;
+
+			}
+
+	.div_place{
+  		position:absolute;
+ 		 left:73.4%;
+ 		 top:55.6%;
+ 	 }
+    li {
+        padding: 12px;
+    }
+    .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+
+
+</head>
+
+<body background = "static/5-13050GS111.gif">
+    <script src="static/layui/layui.js"></script>
+
+
+	<div class="div_logo " style="margin-bottom:18px;background-color:transparent;">
+		<img height="30%" width="30%"  src="static/lava.png"/>
+	</div>
+
+	<div class="div_text"style="float:left;text-align:center;display: inline-block;background-color:transparent;">
+	<form  class="layui-form" action="/get_summary" method="post" id="submit">
+
+	<input id="username" name="ori" type="text" style=" width:70%;float:left;height:38px; border-radius:11px;border:1px solid #e0dce4;padding: 0 3px;"required lay-verify="required"/>
+	<div class="div_place "style="float:left;margin-left:-30px;margin-top:3px;">
+
+			</div>
+	<button type="submit" style="width:100px;height:42px;float:left;background-color:#38f;margin-left:6px;" class="layui-btn layui-anim-scale" lay-submit lay-filter="formDemo"><b>生成摘要</b></button><br/>
+
+
+    </form>
+      <button style="" class="layui-btn layui-btn-sm layui-btn-primary" type="button" id="btn1" onclick="test1()"><i class="layui-icon">&#xe642;</i></button>
+    </div>
+</div>
+
+<script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form;
+
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    layer.msg(JSON.stringify(ori.field));
+    layer.msg(JSON.stringify(item1.field));
+    layer.msg(JSON.stringify(item2.field));
+    layer.msg(JSON.stringify(item3.field));
+    layer.msg(JSON.stringify(item4.field));
+    layer.msg(JSON.stringify(item5.field));
+    return false
+  });
+});
+layui.use('slider', function(){
+  var slider = layui.slider;
+
+  //渲染
+  slider.render({
+    elem: '#slideTest1'  //绑定元素
+  });
+});
+layui.use('element', function(){
+  var element = layui.element;
+
+  //…
+});
+layui.use('slider', function(){
+  var slider = layui.slider;
+
+  //渲染
+  slider.render({
+    elem: '#slideTest4'  //绑定元素
+  });
+});
+layui.use('element', function(){
+  var element = layui.element;
+
+  //…
+});
+layui.use('slider', function(){
+  var slider = layui.slider;
+
+  //渲染
+  slider.render({
+    elem: '#slideTest2'  //绑定元素
+  });
+});
+layui.use('element', function(){
+  var element = layui.element;
+
+  //…
+});
+function test1(){
+    layui.use('layer', function(){
+	var layer = layui.layer;
+	layer.open({
+          type:1,
+          tittle:"设置",
+          content:'<div style="padding: 10px" id="test"><form action="/set_configs" class="layui-form" method="POST"> <fieldset class="layui-elem-field layui-field-title" > <legend>首句权重</legend> </fieldset> <input type="text" name="item1" required  lay-verify="required" placeholder="#[init]:1.15 " autocomplete="off" class="layui-input"> <fieldset class="layui-elem-field layui-field-title"  > <legend>尾句权重</legend> </fieldset> <input type="text" name="item2" required  lay-verify="required" placeholder="#[init]:1.15" autocomplete="off" class="layui-input"> <fieldset class="layui-elem-field layui-field-title"  > <legend>句子长度权重</legend> </fieldset> <input type="text" name="item3" required  lay-verify="required" placeholder="#[init]:10 (words)" autocomplete="off" class="layui-input"> <fieldset class="layui-elem-field layui-field-title"  > <legend>摘要句子个数</legend> </fieldset> <input type="text" name="item4" required  lay-verify="required" placeholder="#[init]:7(sentences)" autocomplete="off" class="layui-input"> <fieldset class="layui-elem-field layui-field-title" > <legend>MMR</legend> </fieldset> <div class="layui-inline"> <input type="text" name="item5" required  lay-verify="required" placeholder="#alpha default = 0.5" autocomplete="off" class="layui-input" > </div> <button type="submit" class="layui-btn layui-btn-fluid" style="margin-top: 15px">保存设置</button> </form></div>',
+          skin:'layui-layer-molv',
+          area:['500px','600px'],
+          offset:'auto',
+          icon:1,
+          shadeClose:true,
+          anim:4,
+          maxin:true,
+          });
+    });
+}
+layui.use('element', function(){
+  var element = layui.element;
+
+  //…
+});
+
+</script>
+
+
+</body>
+</html>
